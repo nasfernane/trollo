@@ -9,10 +9,7 @@
     </head>
     <body>
         <main>
-            <?php 
-            require_once 'hostconfig.php';
-            require_once 'functions.php'; 
-            ?>
+            <?php require_once 'functions.php'; ?>
 
             <h1>Votre TO-DO list</h1>
             <form method="POST" id="form">

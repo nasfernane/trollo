@@ -8,7 +8,7 @@
 
         // si une requête post 'task' est définie
         if (isset($_POST['task'])) {
-            $task = htmlspecialchars($_POST['task']);
+            $task = htmlentities($_POST['task'], ENT_QUOTES);
             
             // requête préparée avec marqueur nommé pour ajouter une nouvelle tâche
             $addTask = $tododb->prepare("
@@ -25,10 +25,8 @@
         }
 
         if (isset($_POST['delete'])) {
-            // convertir les entitées HTML en ignorant les guillemets simples
-            $deletingTask = htmlspecialchars($_POST['delete']);
-
-            print_r('deleting task : ' . $deletingTask . "<br/>");
+            // conversion des entitées HTML, même les guillements simples
+            $deletingTask = htmlentities($_POST['delete'], ENT_QUOTES);
 
             // requête pour récupérer l'id de la tâche à supprimer
             $deletingId = $tododb->query("
@@ -39,7 +37,6 @@
             [$deletingId] = ($deletingId->fetchAll());
             $deletingId = $deletingId['idTask'];
 
-            print_r('formated ID : ' . $deletingId . "<br/>");
             // supprime la tâche avec l'id récupéré
             $removeTask = "
                 DELETE FROM Tasks 
