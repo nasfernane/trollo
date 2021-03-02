@@ -1,19 +1,22 @@
 <?php
-    require_once 'hostconfig.php';
+    $host = 'mysql:host=localhost;dbname=todolist';
 
     // connexion à la bdd et récupération des exceptions
     try {
-        $tododb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $tododb = new PDO($host, 'root', '');
         $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // si une requête post 'task' est définie
         if (isset($_POST['task'])) {
             $task = $_POST['task'];
             
+            // requête préparée avec marqueur nommé pour ajouter une nouvelle tâche
             $addTask = $tododb->prepare("
                 INSERT INTO
                 Tasks (Nom)
                 VALUES (:task)");
 
+            // exécute la requête
             $addTask->execute(array(
                 ':task' => $task,
             ));
@@ -22,26 +25,30 @@
         }
 
         if (isset($_POST['delete'])) {
-            $deletingTask = $_POST['delete'];
+            $deletingTask = htmlentities($_POST['delete']);
 
-            $removeTask = $tododb->prepare("
-                DELETE FROM Tasks 
+            // requête pour récupérer l'id de la tâche à supprimer
+            $deletingId = $tododb->query("
+                SELECT idTask FROM Tasks
                 WHERE nom='{$deletingTask}'
             ");
+            // déstructure le tableau retourné par le fetch de la requête
+            [$deletingId] = $deletingId->fetchAll();
 
-            $removeTask->execute();
+            // supprime la tâche avec l'id récupéré
+            $removeTask = "
+                DELETE FROM Tasks 
+                WHERE idTask='{$deletingId[0]}'
+            ";
+            $tododb->exec($removeTask);
 
             echo "Tâche supprimée";
         }
         
-        
+    // récupération des exceptions
     } catch (PDOException $err) {
         echo "Erreur : " . $err->getMessage();
     }
 
-    // fermeture du serveur
-    // $connexion = null;
-    
 
-    
 ?>

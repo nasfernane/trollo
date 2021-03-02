@@ -1,12 +1,8 @@
 <?php
 
 function displayTasks() {
-    $servername = 'localhost';
-    $dbname = 'todolist';
-    $username = 'nasfernane';
-    $password = 'blabladodo';
-
-    $tododb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $host = 'mysql:host=localhost;dbname=todolist';
+    $tododb = new PDO($host, 'root', '');
     $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
