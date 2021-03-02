@@ -9,16 +9,17 @@
     </head>
     <body>
         <main>
-            
+            <?php require_once 'functions.php'; ?>
+
             <h1>Votre TO-DO list</h1>
             <form method="POST" id="form">
                 <label for="form__input">Nouvelle tâche</label>
-                <input name="task" type="text" id="form__input">
+                <input name="task" type="text" id="form__input" autocomplete="off">
                 <button>Ajouter</button> 
             </form>
             <?php require "list.php"; ?>
             <ul>
-                <?= displayTasks(file_get_contents('list.txt')) ?>
+                <?= displayTasks() ?>
             </ul>
             
             
