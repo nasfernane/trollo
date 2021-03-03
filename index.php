@@ -9,19 +9,15 @@
     </head>
     <body>
         <main>
-            <?php 
-            require 'php/functions.php'; 
-            require 'php/list.php'; 
-            ?>
+            <?php require 'php/functions.php'; ?>
+            <?php require 'php/list.php'; ?>
 
             <h1 class="mainTitle">Trollo</h1>
-
             <div class="todoContainer">
                 <?= displayList('home') ?>
                 <?= displayList('work') ?>
                 <?= displayList('event') ?>
-            </div>  
-                    
+            </div>                
         </main>
     </body>
 </html>
