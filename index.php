@@ -22,7 +22,6 @@
                 <?= displayList('event') ?>
             </div>  
                     
-            
         </main>
     </body>
 </html>
