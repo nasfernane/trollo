@@ -26,6 +26,14 @@ function displayTasks(string $table) {
 function displayList(string $table) {
     $displayTasks = displayTasks("{$table}task");
     $title = strtoupper($table[0]) . substr($table, 1);
+    $today = date('Y-m-d');
+    $datepicker = $table === 'event'? "
+        <span class='datePicker'>
+            <span class='datePicker__button'></span>
+            <input type='date' value='$today' min='$today' class='datePicker__input' />
+        </span>" 
+        : '';
+    
 
     return <<<HTML
         <section class="todoContainer__list todoContainer__list--{$table}">
@@ -35,8 +43,9 @@ function displayList(string $table) {
             </header>
             
             <form method="POST" class="todoContainer__list__form">
-                <label for="form__input">Ajouter</label>
-                <input name="{$table}task" type="text" id="form__input" autocomplete="off">
+                <label for="form__input">Add</label>
+                <input name="{$table}task" type="text" id="form__input" autocomplete="off" />
+                {$datepicker}
                 <button class="addBtn" title="Ajouter"><img src="/assets/img/add-button.png" alt="Add Button"></button> 
             </form>
             
