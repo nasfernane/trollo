@@ -41,13 +41,15 @@ main {
 .todoContainer {
   width: 100%;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  height: auto; }
   .todoContainer__list {
     background: rgba(230, 230, 230, 0.4);
     border: 0.2rem solid black;
     border-radius: 0.8rem;
     padding: 1rem 2rem;
-    width: 25%; }
+    width: 25%;
+    height: 50rem; }
     .todoContainer__list__header {
       display: flex;
       align-items: center;
