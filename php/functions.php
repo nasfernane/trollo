@@ -5,7 +5,6 @@ function displayTasks(string $table) {
     $tododb = new PDO($host, 'root', '');
     $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
     $userTasks = $tododb->prepare("SELECT * FROM {$table}");
     $requestStatus = $userTasks->execute();
 
@@ -82,6 +81,5 @@ function removeTask (object $database, string $table) {
         WHERE id{$table}='{$deletingId}'
     ";
     $database->exec($removeTask);
-}
-            
+}  
 ?>
