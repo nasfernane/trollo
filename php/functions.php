@@ -16,7 +16,7 @@ function displayTasks(string $table) {
                 <div class='task'>
                     <li>$task[nom]</li>
                     <form method='POST'>
-                        <button class='deleteBtn' name='$table-delete' value='$task[nom]' title='Supprimer'><img src='/assets/img/delete.png' alt='Supprimer Tâche'></button>
+                        <button class='deleteBtn' name='{$table}_delete' value='$task[nom]' title='Supprimer'><img src='/assets/img/delete.png' alt='Supprimer Tâche'></button>
                     </form>
                 </div>";
         }
@@ -48,10 +48,9 @@ function displayList(string $table) {
 HTML;
 }
 
-
-
 // ajoute une tâche à la bdd
-function addTask (object $database, string $table, string $task) {
+function addTask (object $database, string $table) {
+    $task = htmlentities($_POST[$table], ENT_QUOTES);
     $addTask = $database->prepare("
                 INSERT INTO
                 $table (Nom)
@@ -64,7 +63,8 @@ function addTask (object $database, string $table, string $task) {
 }
 
 // supprime une tâche de la bdd
-function removeTask (object $database, string $table, string $task) {
+function removeTask (object $database, string $table) {
+    $task = htmlentities($_POST["{$table}_delete"], ENT_QUOTES);
 
     // requête pour récupérer l'id de la tâche à supprimer
     $deletingId = $database->query("

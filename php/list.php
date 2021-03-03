@@ -6,26 +6,18 @@
         $tododb = new PDO($host, 'root', '');
         $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // si une requête post 'task' est définie et non nulle
-        if (isset($_POST['hometask']) && ($_POST['hometask']) !== '') {
-            $hometask = htmlentities($_POST['hometask'], ENT_QUOTES);
-            addTask($tododb, 'hometask', $hometask);
-        }
-
-        // si une requête post 'task' est définie et non nulle
-        if (isset($_POST['worktask']) && ($_POST['worktask']) !== '') {
-            $worktask = htmlentities($_POST['worktask'], ENT_QUOTES);
-            addTask($tododb, 'worktask', $worktask);
-        }
-
-        if (isset($_POST['hometask-delete'])) {
-            $delHomeTask = htmlentities($_POST['hometask-delete'], ENT_QUOTES);
-            removeTask($tododb, 'hometask', $delHomeTask);
-        }
-
-        if (isset($_POST['worktask-delete'])) {
-            $delWorkTask = htmlentities($_POST['worktask-delete'], ENT_QUOTES);
-            removeTask($tododb, 'worktask', $delWorkTask);
+        if (isset($_POST)) {
+            foreach ($_POST as $field => $value) {
+                // vérifie si le champ contient 'delete"
+                $delete = isset(explode('_', $field)[1]) && explode('_', $field)[1] === 'delete'  ? true : false;
+                
+                if ($delete) {
+                    $deleteField = explode('_', $field)[0];
+                    removeTask($tododb, $deleteField);
+                } else if ($value !== '') {
+                    addTask($tododb, $field);
+                }
+            }
         }
         
     // récupération des exceptions
