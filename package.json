@@ -1,0 +1,22 @@
+{
+    "name": "todo-list",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "scss": "node-sass assets/sass/main.scss assets/sass/style.css -w"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nasfernane/todo-list.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nasfernane/todo-list/issues"
+    },
+    "homepage": "https://github.com/nasfernane/todo-list#readme",
+    "dependencies": {
+        "node-sass": "^5.0.0"
+    }
+}

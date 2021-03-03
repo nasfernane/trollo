@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
+* {
+    font-family: 'RocknRoll One', sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background: url('/assets/img/bonsai.jpg') center no-repeat;
+    background-size: cover;
+}
+
+.mainTitle {
+    font-size: 5rem;
+    margin: 0 auto;
+    display: inline-block;
+    margin-bottom: 5rem;
+}

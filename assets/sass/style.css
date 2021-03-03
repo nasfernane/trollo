@@ -1,0 +1,97 @@
+/* css global reset */
+@import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box;
+  font-weight: 400;
+  letter-spacing: 0.05rem; }
+
+* {
+  font-family: 'RocknRoll One', sans-serif; }
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: url("/assets/img/bonsai.jpg") center no-repeat;
+  background-size: cover; }
+
+.mainTitle {
+  font-size: 5rem;
+  margin: 0 auto;
+  display: inline-block;
+  margin-bottom: 5rem; }
+
+main {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.8rem; }
+
+.todoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+  .todoContainer__list {
+    background: rgba(230, 230, 230, 0.4);
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    padding: 1rem 2rem;
+    width: 25%; }
+    .todoContainer__list__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid black; }
+      .todoContainer__list__header h2 {
+        font-size: 3rem; }
+    .todoContainer__list__form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1rem; }
+      .todoContainer__list__form input {
+        padding: 0rem 0.5rem;
+        height: 3.2rem;
+        border-radius: 0.8rem;
+        border: transparent; }
+      .todoContainer__list__form button {
+        background: transparent;
+        outline: none;
+        border: 0px;
+        cursor: pointer; }
+      .todoContainer__list__form .addBtn {
+        transition: all 0.1s ease-out; }
+        .todoContainer__list__form .addBtn:active {
+          border-radius: 60%;
+          transform: translateY(0.3rem);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem; }
+  .task li {
+    list-style-type: none;
+    margin-right: 0.5rem; }
+  .task .deleteBtn {
+    transition: all 0.2s ease-in;
+    background: transparent;
+    outline: none;
+    border: 0px;
+    cursor: pointer; }
+    .task .deleteBtn:hover {
+      transform: rotateY(180deg); }
