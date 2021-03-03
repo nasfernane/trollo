@@ -1,3 +1,6 @@
+<?php require 'php/functions.php'; ?>
+<?php require 'php/list.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -9,9 +12,6 @@
     </head>
     <body>
         <main>
-            <?php require 'php/functions.php'; ?>
-            <?php require 'php/list.php'; ?>
-
             <h1 class="mainTitle">Trollo</h1>
             <div class="todoContainer">
                 <?= displayList('home') ?>
