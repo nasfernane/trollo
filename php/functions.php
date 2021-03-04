@@ -11,9 +11,11 @@ function displayTasks(string $table) {
     if ($requestStatus) {
         $html = '';
         foreach ($userTasks as $task) {
+            $date = isset($task['date']) ? '(' . $task['date'] . ')' : '';
+            
             $html .= "
                 <div class='task'>
-                    <li>$task[nom]</li>
+                    <li>$task[nom] $date</li>
                     <form method='POST'>
                         <button class='deleteBtn' name='{$table}_delete' value='$task[nom]' title='Supprimer'><img src='/assets/img/delete.png' alt='Supprimer Tâche'></button>
                     </form>
@@ -30,7 +32,7 @@ function displayList(string $table) {
     $datepicker = $table === 'event'? "
         <span class='datePicker'>
             <span class='datePicker__button'></span>
-            <input type='date' value='$today' min='$today' class='datePicker__input' />
+            <input name='eventdate' type='date' value='$today' min='$today' class='datePicker__input' />
         </span>" 
         : '';
     
@@ -59,15 +61,30 @@ HTML;
 // ajoute une tâche à la bdd
 function addTask (object $database, string $table) {
     $task = htmlentities($_POST[$table], ENT_QUOTES);
-    $addTask = $database->prepare("
+    $date = $_POST['eventdate'] ?? '';
+
+    if (!$date) {
+        $addTask = $database->prepare("
+        INSERT INTO
+        $table (Nom)
+        VALUES (:task)");
+
+        // exécute la requête
+        $addTask->execute(array(
+        ':task' => $task,
+        ));  
+    } else {
+        $addTask = $database->prepare("
                 INSERT INTO
-                $table (Nom)
-                VALUES (:task)");
+                $table (Nom, Date)
+                VALUES (:task, :date)");
 
     // exécute la requête
     $addTask->execute(array(
         ':task' => $task,
+        ':date' => $date
     ));
+    } 
 }
 
 // supprime une tâche de la bdd

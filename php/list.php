@@ -14,7 +14,7 @@
                 if ($delete) {
                     $deleteField = explode('_', $field)[0];
                     removeTask($tododb, $deleteField);
-                } else if ($value !== '') {
+                } else if ($value !== '' && $field !== 'eventdate') {
                     addTask($tododb, $field);
                 }
             }
