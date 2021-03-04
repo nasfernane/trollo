@@ -12,11 +12,13 @@ function displayTasks(string $table) {
         $html = '';
         foreach ($userTasks as $task) {
             $date = isset($task['date']) ? '(' . $task['date'] . ')' : '';
+            $urgent = $task['urgent'] ? 'class="urgentTask"' : '';
             
             $html .= "
                 <div class='task'>
-                    <li>$task[nom] $date</li>
+                    <li $urgent>$task[nom] $date</li>
                     <form method='POST'>
+                        <button class='clockBtn' name='{$table}_clock' value='$task[nom]' title='Définir urgence'><img src='/assets/img/urgent.png' alt='Définir urgence'></button>
                         <button class='deleteBtn' name='{$table}_delete' value='$task[nom]' title='Supprimer'><img src='/assets/img/delete.png' alt='Supprimer Tâche'></button>
                     </form>
                 </div>";
@@ -108,4 +110,31 @@ function removeTask (object $database, string $table) {
     ";
     $database->exec($removeTask);
 }  
+
+// définit une tâche comme urgent
+function defineUrgentTask (object $database, string $table) {
+    $task = htmlentities($_POST["{$table}_clock"], ENT_QUOTES);
+
+    // requête pour récupérer l'id de la tâche à supprimer
+    $taskId = $database->query("
+    SELECT id{$table} FROM $table
+    WHERE nom='{$task}'
+    ");
+
+    // déstructure le tableau retourné par le fetch de la requête
+    $taskId = $taskId->fetchAll();
+    $taskId = $taskId[0]["id{$table}"];
+
+    // supprime la tâche avec l'id récupéré
+    $modifyTask = "
+        Update $table
+        SET urgent = NOT urgent
+        WHERE id{$table}='{$taskId}'
+    ";
+    $database->exec($modifyTask);
+
+
+}
+
+
 ?>

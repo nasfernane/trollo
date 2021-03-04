@@ -119,11 +119,13 @@ main {
   .task li {
     list-style-type: none;
     margin-right: 0.5rem; }
-  .task .deleteBtn {
-    transition: all 0.2s ease-in;
-    background: transparent;
+    .task li.urgentTask {
+      color: red; }
+  .task form button {
     outline: none;
     border: 0px;
-    cursor: pointer; }
-    .task .deleteBtn:hover {
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease-in; }
+    .task form button:hover {
       transform: rotateY(180deg); }

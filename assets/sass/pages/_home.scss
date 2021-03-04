@@ -114,17 +114,35 @@ main {
     li {
         list-style-type: none;
         margin-right: 0.5rem;
+
+        &.urgentTask {
+            color: red;
+        }
     }
 
-    .deleteBtn {
-        transition: all 0.2s ease-in;
-        background: transparent;
-        outline: none;
-        border: 0px;
-        cursor: pointer;
+    form {
+        button {
+            outline: none;
+            border: 0px;
+            cursor: pointer;
+            background: transparent;
+            transition: all 0.2s ease-in;
 
-        &:hover {
-            transform: rotateY(180deg);
+            &:hover {
+                transform: rotateY(180deg);
+            }
         }
+
+        // .deleteBtn {
+        //     transition: all 0.2s ease-in;
+        //     background: transparent;
+        //     outline: none;
+        //     border: 0px;
+        //     cursor: pointer;
+
+        //     &:hover {
+        //         transform: rotateY(180deg);
+        //     }
+        // }
     }
 }
