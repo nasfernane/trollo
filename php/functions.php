@@ -4,8 +4,9 @@ function displayTasks(string $table) {
     $host = 'mysql:host=localhost;dbname=trollo';
     $tododb = new PDO($host, 'root', '');
     $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $orderBy = $table === 'eventtask' ? 'date' :'dateCreation';
 
-    $userTasks = $tododb->prepare("SELECT * FROM {$table}");
+    $userTasks = $tododb->prepare("SELECT * FROM {$table} ORDER BY {$orderBy} ASC");
     $requestStatus = $userTasks->execute();
 
     if ($requestStatus) {
@@ -77,15 +78,15 @@ function addTask (object $database, string $table) {
         ));  
     } else {
         $addTask = $database->prepare("
-                INSERT INTO
-                $table (Nom, Date)
-                VALUES (:task, :date)");
+            INSERT INTO
+            $table (Nom, Date)
+            VALUES (:task, :date)");
 
-    // exécute la requête
-    $addTask->execute(array(
-        ':task' => $task,
-        ':date' => $date
-    ));
+        // exécute la requête
+        $addTask->execute(array(
+            ':task' => $task,
+            ':date' => $date
+        ));
     } 
 }
 
@@ -101,6 +102,7 @@ function removeTask (object $database, string $table) {
 
     // déstructure le tableau retourné par le fetch de la requête
     $deletingId = $deletingId->fetchAll();
+    
     $deletingId = $deletingId[0]["id{$table}"];
 
     // supprime la tâche avec l'id récupéré

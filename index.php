@@ -1,4 +1,5 @@
 <?php require 'php/functions.php'; ?>
+
 <?php require 'php/list.php'; ?>
 
 <!DOCTYPE html>
