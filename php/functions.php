@@ -1,6 +1,8 @@
 <?php
+
+// création d'un nouvel utilisateur avec hashage du mot de passe puis redirige vers home page
 function createUser(string $newLogin, string $newPw, string $newPwConfirm, object $database) {
-    $encryptedPw = 
+    $encryptedPw = password_hash($newPw, PASSWORD_BCRYPT);
 
     $createUser = $database->prepare("
         INSERT INTO 
@@ -9,10 +11,40 @@ function createUser(string $newLogin, string $newPw, string $newPwConfirm, objec
         
     $createUser->execute(array(
         ':login' => $newLogin,
-        ':password' => $newPw
+        ':password' => $encryptedPw
     ));
 
     header('location: ?page=home');
+}
+
+// connexion d'un utilisateur déjà existant
+function userLogin(string $login, string $pw, $database) {
+    // construction et exécution de la requête
+    $user = $database->prepare("
+        SELECT * 
+        FROM users
+        WHERE login = '{$login}'
+        ");
+    $user->execute();
+    $user = $user->fetchAll();
+
+    // si l'utilisateur existe
+    if ($user) {
+        // récupération du mot de passe de l'utilisateur enregistré, puis vérification du mot de passe entré
+        $userPassword = $user[0]['password'];
+        $isCorrectPw = password_verify($pw, $userPassword);
+
+        // si les identifiants sont corrects, ajoute l'id de l'utilisateur à la session
+        if ($isCorrectPw) {
+            $_SESSION['userid'] = $user[0]['idUser'];
+            $_SESSION['wrongLogin'] = false;
+            header('location: ?page/home');
+        } else {
+            $_SESSION['wrongLogin'] = true;
+        }
+    }
+    
+
 }
 
 // affiche les tâches existantes selon la table choisie
@@ -20,9 +52,11 @@ function displayTasks(string $table, object $database) {
     // définit le classement en fonction du type de liste
     $orderBy = $table === 'eventtask' ? 'date' :'dateCreation';
 
+    // récupère les tâches de l'utilisateur
     $userTasks = $database->prepare("SELECT * FROM {$table} ORDER BY {$orderBy} ASC");
     $requestStatus = $userTasks->execute();
 
+    // si la requête est réussie, combine chaque tâche dans un ensemble HTML et le retourne
     if ($requestStatus) {
         $html = '';
         foreach ($userTasks as $task) {
@@ -42,10 +76,15 @@ function displayTasks(string $table, object $database) {
     }
 };
 
+// affiche une liste en fonction de la table choisie dans une BDD
 function displayList(string $table, object $database) {
+    // récupère les tâches correspondantes
     $displayTasks = displayTasks("{$table}task", $database);
+    // formate le titre de la liste
     $title = strtoupper($table[0]) . substr($table, 1);
+    // récupération de la date
     $today = date('Y-m-d');
+    // création de l'input calendrier pour la liste d'events
     $datepicker = $table === 'event'? "
         <span class='datePicker'>
             <span class='datePicker__button'></span>
@@ -54,6 +93,7 @@ function displayList(string $table, object $database) {
         : '';
     
 
+    // renvoie un ensemble HTML affichant la liste ainsi que toutes ses tâches récupérées dans $displayTasks, en ajoutant le calendrier si nécessaire
     return <<<HTML
         <section class="todoContainer__list todoContainer__list--{$table}">
             <header class="todoContainer__list__header">
@@ -77,9 +117,12 @@ HTML;
 
 // ajoute une tâche à la bdd
 function addTask (object $database, string $table) {
+    // récupération de la tâche à ajouter
     $task = htmlentities($_POST[$table], ENT_QUOTES);
+    // récupère la date si présente (dans le cas de la liste events)
     $date = isset($_POST['eventdate']) ? $_POST['eventdate'] : '';
 
+    // construit la requête en fonction de la présence ou non d'une date d'évènement
     if (!$date) {
         $addTask = $database->prepare("
         INSERT INTO
@@ -106,20 +149,20 @@ function addTask (object $database, string $table) {
 
 // supprime une tâche de la bdd
 function removeTask (object $database, string $table) {
+    // récupère le nom de la tâche à supprimer
     $task = htmlentities($_POST["{$table}_delete"], ENT_QUOTES);
 
-    // requête pour récupérer l'id de la tâche à supprimer
+    // première requête pour récupérer son ID dans la BDD
     $deletingId = $database->query("
     SELECT id{$table} FROM $table
     WHERE nom='{$task}'
     ");
 
-    // déstructure le tableau retourné par le fetch de la requête
+    // fetch la première requête puis déstructure le tableau retourné
     $deletingId = $deletingId->fetchAll();
-    
     $deletingId = $deletingId[0]["id{$table}"];
 
-    // supprime la tâche avec l'id récupéré
+    // deuxième requête pour supprimer la tâche avec l'id récupéré
     $removeTask = "
         DELETE FROM $table
         WHERE id{$table}='{$deletingId}'
@@ -129,19 +172,20 @@ function removeTask (object $database, string $table) {
 
 // définit une tâche comme urgent
 function defineUrgentTask (object $database, string $table) {
+    // récupération du nom de la tâche
     $task = htmlentities($_POST["{$table}_clock"], ENT_QUOTES);
 
-    // requête pour récupérer l'id de la tâche à supprimer
+    // première requête pour récupérer l'id de la tâche à supprimer
     $taskId = $database->query("
     SELECT id{$table} FROM $table
     WHERE nom='{$task}'
     ");
 
-    // déstructure le tableau retourné par le fetch de la requête
+    // fetch la deuxième requête puis déstructure le tableau retourné
     $taskId = $taskId->fetchAll();
     $taskId = $taskId[0]["id{$table}"];
 
-    // supprime la tâche avec l'id récupéré
+    // définit la tâche ou l'évènement comme urgent(e) avec l'id récupéré
     $modifyTask = "
         Update $table
         SET urgent = NOT urgent

@@ -179,7 +179,8 @@ main {
   width: 60%;
   border: 0.2rem solid black;
   padding: 2rem 2rem;
-  border-radius: 0.8rem; }
+  border-radius: 0.8rem;
+  background: rgba(230, 230, 230, 0.4); }
   .signUpSection h1 {
     margin-bottom: 3rem; }
   .signUpSection .signUpForm {
@@ -192,4 +193,27 @@ main {
       justify-content: space-between;
       margin-bottom: 1rem; }
       .signUpSection .signUpForm__field input {
+        width: 50%; }
+
+.loginSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  border: 0.2rem solid black;
+  padding: 2rem 2rem;
+  border-radius: 0.8rem;
+  background: rgba(230, 230, 230, 0.4); }
+  .loginSection h1 {
+    margin-bottom: 3rem; }
+  .loginSection .loginForm {
+    width: 80%;
+    display: flex;
+    flex-direction: column; }
+    .loginSection .loginForm__field {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem; }
+      .loginSection .loginForm__field input {
         width: 50%; }

@@ -1,11 +1,15 @@
 <?php
 
+// création de la session
 session_start();
 $id_session = session_id();
+// variables par défault pour alerter l'utilisateur s'il entre des informations incorrectes
 $_SESSION['wrongPwCreate'] = false;
+$_SESSION['wrongLogin'] = false;
 
+
+// Connexion à la BDD et récupération des exceptions
 $host = 'mysql:host=localhost;dbname=trollo';
-// connexion à la bdd et récupération des exceptions
 try {
     $tododb = new PDO($host, 'root', '');
     $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

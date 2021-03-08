@@ -1,8 +1,11 @@
+<!-- page de création de nouveau compte utilisateur -->
 <section class="signUpSection">
     <h1>Inscription</h1>
 
+    <!-- alerte l'utilisateur si ses mots de passe ne correspondent pas -->
     <?= $_SESSION['wrongPwCreate'] === true ? 'Vos mots de passe ne correspondent pas' : ''; ?>
 
+    <!-- formulaire avec login, mot de passe et confirmation de mot de passe -->
     <form method="POST" class=signUpForm>
         <div class="signUpForm__field">
             <label for="signUpForm__login">Votre nom</label>
