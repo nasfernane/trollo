@@ -45,13 +45,26 @@
                 text-decoration: none;
                 transition: all 0.2s ease-in;
             }
+        }
 
+        &--signup,
+        &--login {
             &:hover {
                 border: 2px green solid;
             }
 
             &:hover a {
-                color: green;
+                color: green !important;
+            }
+        }
+
+        &--logout {
+            &:hover {
+                border: 2px red solid;
+            }
+
+            &:hover a {
+                color: red !important;
             }
         }
     }

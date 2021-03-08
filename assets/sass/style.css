@@ -67,10 +67,14 @@ body {
         color: black;
         text-decoration: none;
         transition: all 0.2s ease-in; }
-      .header__auth button:hover {
-        border: 2px green solid; }
-      .header__auth button:hover a {
-        color: green; }
+    .header__auth--signup:hover, .header__auth--login:hover {
+      border: 2px green solid; }
+    .header__auth--signup:hover a, .header__auth--login:hover a {
+      color: green !important; }
+    .header__auth--logout:hover {
+      border: 2px red solid; }
+    .header__auth--logout:hover a {
+      color: red !important; }
 
 main {
   width: 80%;

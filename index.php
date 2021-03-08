@@ -19,6 +19,9 @@ switch ($path) {
     case 'signup': 
         require 'php/views/signup.php';
         break;
+    case 'logout':
+        require 'php/views/logout.php';
+        break;
     default: 
         require 'php/views/home.php';
 }

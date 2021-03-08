@@ -1,5 +1,16 @@
 <?php
 
+function displayLog() {
+    // affiche les options de login/signup/logout en fonction de la session utilisateur
+    $isLogged = isset($_SESSION['userid']);
+
+    return $isLogged 
+    ? '<button class="header__auth--logout"><a href="?page=logout">Logout</a></button>'
+    : '<button class="header__auth--login"><a href="?page=login">Login</a></button>
+    <button class="header__auth--signup"><a href="?page=signup">Sign Up</a></button>';
+
+}
+
 // création d'un nouvel utilisateur avec hashage du mot de passe puis redirige vers home page
 function createUser(string $newLogin, string $newPw, string $newPwConfirm, object $database) {
     $encryptedPw = password_hash($newPw, PASSWORD_BCRYPT);

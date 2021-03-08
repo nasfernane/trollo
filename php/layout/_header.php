@@ -15,8 +15,7 @@
             <a href="/">Trollo</a>
         </div>
         <div class="header__auth">
-            <button class="header__auth--login"><a href="?page=login">Login</a></button>
-            <button class="header__auth--signup"><a href="?page=signup">Sign Up</a></button>
+            <?= displayLog() ?>
         </div>
         
     </header>
