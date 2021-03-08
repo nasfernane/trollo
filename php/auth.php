@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+$id_session = session_id();
+$_SESSION['wrongPwCreate'] = false;
+
 $host = 'mysql:host=localhost;dbname=trollo';
 // connexion à la bdd et récupération des exceptions
 try {

@@ -1,5 +1,5 @@
 <?php 
-require 'php/database.php'; 
+require 'php/auth.php'; 
 require 'php/functions.php'; 
 require 'php/databasecontroller.php'; 
 

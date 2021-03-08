@@ -1,6 +1,8 @@
 <section class="signUpSection">
     <h1>Inscription</h1>
 
+    <?= $_SESSION['wrongPwCreate'] === true ? 'Vos mots de passe ne correspondent pas' : ''; ?>
+
     <form method="POST" class=signUpForm>
         <div class="signUpForm__field">
             <label for="signUpForm__login">Votre nom</label>

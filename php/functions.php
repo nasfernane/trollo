@@ -1,5 +1,7 @@
 <?php
 function createUser(string $newLogin, string $newPw, string $newPwConfirm, object $database) {
+    $encryptedPw = 
+
     $createUser = $database->prepare("
         INSERT INTO 
         users (login, password) 

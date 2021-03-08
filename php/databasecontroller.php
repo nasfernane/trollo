@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_POST)) {
     foreach ($_POST as $field => $value) {
         $exclude = ['eventdate', 'newpw', 'newpwconfirm'];
@@ -16,8 +15,15 @@ if (isset($_POST)) {
             $field = explode('_', $field)[0];
             defineUrgentTask($tododb, $field);
         } else if ($newLogin) {
-            createUser($newLogin, $newPw, $newPwConfirm, $tododb);
-            break;
+            if ($newPw !== $newPwConfirm) {
+                $_SESSION['wrongPwCreate'] = true;
+                break;
+            } else {
+                $_SESSION['wrongPwCreate'] = false;
+                createUser($newLogin, $newPw, $newPwConfirm, $tododb);
+                break;
+            }
+            
         } else if ($value !== '' && !in_array($field, $exclude)) {
             addTask($tododb, $field);
         }
