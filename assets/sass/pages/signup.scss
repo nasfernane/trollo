@@ -1,0 +1,30 @@
+.signUpSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    border: 0.2rem solid black;
+    padding: 2rem 2rem;
+    border-radius: 0.8rem;
+
+    h1 {
+        margin-bottom: 3rem;
+    }
+
+    .signUpForm {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+
+        &__field {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+
+            input {
+                width: 50%;
+            }
+        }
+    }
+}

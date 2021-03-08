@@ -1,12 +1,24 @@
 <?php
+function createUser(string $newLogin, string $newPw, string $newPwConfirm, object $database) {
+    $createUser = $database->prepare("
+        INSERT INTO 
+        users (login, password) 
+        VALUES (:login, :password)");
+        
+    $createUser->execute(array(
+        ':login' => $newLogin,
+        ':password' => $newPw
+    ));
+
+    header('location: ?page=home');
+}
+
 // affiche les tâches existantes selon la table choisie
-function displayTasks(string $table) {
-    $host = 'mysql:host=localhost;dbname=trollo';
-    $tododb = new PDO($host, 'root', '');
-    $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+function displayTasks(string $table, object $database) {
+    // définit le classement en fonction du type de liste
     $orderBy = $table === 'eventtask' ? 'date' :'dateCreation';
 
-    $userTasks = $tododb->prepare("SELECT * FROM {$table} ORDER BY {$orderBy} ASC");
+    $userTasks = $database->prepare("SELECT * FROM {$table} ORDER BY {$orderBy} ASC");
     $requestStatus = $userTasks->execute();
 
     if ($requestStatus) {
@@ -28,8 +40,8 @@ function displayTasks(string $table) {
     }
 };
 
-function displayList(string $table) {
-    $displayTasks = displayTasks("{$table}task");
+function displayList(string $table, object $database) {
+    $displayTasks = displayTasks("{$table}task", $database);
     $title = strtoupper($table[0]) . substr($table, 1);
     $today = date('Y-m-d');
     $datepicker = $table === 'event'? "

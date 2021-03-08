@@ -41,10 +41,13 @@ body {
   padding: 3rem 3rem; }
   .header__trollogo img {
     margin-right: 2rem; }
-  .header__trollogo h1 {
+  .header__trollogo a:link,
+  .header__trollogo a:visited,
+  .header__trollogo a:active {
+    font-weight: bold;
     font-size: 3.2rem;
-    display: inline;
-    width: auto; }
+    color: black;
+    text-decoration: none; }
   .header__auth {
     display: flex;
     align-items: center; }
@@ -168,3 +171,25 @@ main {
     transition: all 0.2s ease-in; }
     .task form button:hover {
       transform: rotateY(180deg); }
+
+.signUpSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  border: 0.2rem solid black;
+  padding: 2rem 2rem;
+  border-radius: 0.8rem; }
+  .signUpSection h1 {
+    margin-bottom: 3rem; }
+  .signUpSection .signUpForm {
+    width: 80%;
+    display: flex;
+    flex-direction: column; }
+    .signUpSection .signUpForm__field {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem; }
+      .signUpSection .signUpForm__field input {
+        width: 50%; }

@@ -13,10 +13,13 @@
             margin-right: 2rem;
         }
 
-        h1 {
+        a:link,
+        a:visited,
+        a:active {
+            font-weight: bold;
             font-size: 3.2rem;
-            display: inline;
-            width: auto;
+            color: black;
+            text-decoration: none;
         }
     }
 

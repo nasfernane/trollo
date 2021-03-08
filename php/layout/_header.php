@@ -12,7 +12,7 @@
     <header class="header">
         <div class="header__trollogo">
             <img src="/assets/img/troll.png" alt="Troll Icon">
-            <h1>Trollo</h1>
+            <a href="/">Trollo</a>
         </div>
         <div class="header__auth">
             <button class="header__auth--login"><a href="?page=login">Login</a></button>
@@ -20,3 +20,4 @@
         </div>
         
     </header>
+        <main>
