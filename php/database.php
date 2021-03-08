@@ -1,6 +1,5 @@
 <?php
     $host = 'mysql:host=localhost;dbname=trollo';
-
     // connexion à la bdd et récupération des exceptions
     try {
         $tododb = new PDO($host, 'root', '');

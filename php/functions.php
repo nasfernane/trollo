@@ -64,7 +64,7 @@ HTML;
 // ajoute une tâche à la bdd
 function addTask (object $database, string $table) {
     $task = htmlentities($_POST[$table], ENT_QUOTES);
-    $date = $_POST['eventdate'] ?? '';
+    $date = isset($_POST['eventdate']) ? $_POST['eventdate'] : '';
 
     if (!$date) {
         $addTask = $database->prepare("

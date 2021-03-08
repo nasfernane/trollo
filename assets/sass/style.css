@@ -30,6 +30,45 @@ body {
   display: inline-block;
   margin-bottom: 5rem; }
 
+.header {
+  height: 10vh;
+  width: 100%;
+  margin-bottom: 5rem;
+  background: rgba(230, 230, 230, 0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 3rem; }
+  .header__trollogo img {
+    margin-right: 2rem; }
+  .header__trollogo h1 {
+    font-size: 3.2rem;
+    display: inline;
+    width: auto; }
+  .header__auth {
+    display: flex;
+    align-items: center; }
+    .header__auth button {
+      outline: none;
+      margin-left: 2rem;
+      height: 3.2rem;
+      border: 2px solid transparent;
+      padding: 1rem 2rem;
+      border-radius: 0.4rem;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease-in; }
+      .header__auth button a:link,
+      .header__auth button a:active,
+      .header__auth button a:visited {
+        color: black;
+        text-decoration: none;
+        transition: all 0.2s ease-in; }
+      .header__auth button:hover {
+        border: 2px green solid; }
+      .header__auth button:hover a {
+        color: green; }
+
 main {
   width: 80%;
   margin: 0 auto;
