@@ -4,7 +4,7 @@
     <h1>Connexion</h1>
 
     <!-- alerte l'utilisateur en cas de données incorrectes -->
-    <?= $_SESSION['wrongLogin'] === true ? 'Vos identifiants sont incorrects' : ''; ?>
+    <?= $_SESSION['wrongLogin'] === true ? '<p class="logFail">Vos identifiants sont incorrects</p>' : ''; ?>
 
     <!-- formulaire avec login et pw -->
     <form method="POST" class=loginForm>

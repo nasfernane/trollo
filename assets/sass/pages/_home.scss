@@ -41,10 +41,19 @@ main {
             padding-bottom: 1rem;
 
             input {
-                padding: 0rem 0.5rem;
+                width: 60%;
+                padding: 0.5rem 1rem;
                 height: 3.2rem;
-                border-radius: 0.8rem;
+                border-radius: 0.4rem;
                 border: transparent;
+                border-bottom: 0.3rem solid transparent;
+                // border-right: 0.3rem solid transparent;
+
+                &:focus {
+                    outline: none;
+                    border-bottom: 0.3rem solid $color-green;
+                    // border-right: 0.3rem solid $color-green;
+                }
             }
 
             button {
@@ -116,7 +125,7 @@ main {
         margin-right: 0.5rem;
 
         &.urgentTask {
-            color: red;
+            color: $color-red;
         }
     }
 

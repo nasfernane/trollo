@@ -116,10 +116,15 @@ main {
       justify-content: space-between;
       padding-bottom: 1rem; }
       .todoContainer__list__form input {
-        padding: 0rem 0.5rem;
+        width: 60%;
+        padding: 0.5rem 1rem;
         height: 3.2rem;
-        border-radius: 0.8rem;
-        border: transparent; }
+        border-radius: 0.4rem;
+        border: transparent;
+        border-bottom: 0.3rem solid transparent; }
+        .todoContainer__list__form input:focus {
+          outline: none;
+          border-bottom: 0.3rem solid #386641; }
       .todoContainer__list__form button {
         background: transparent;
         outline: none;
@@ -171,7 +176,7 @@ main {
     list-style-type: none;
     margin-right: 0.5rem; }
     .task li.urgentTask {
-      color: red; }
+      color: #bc4749; }
   .task form button {
     outline: none;
     border: 0px;
@@ -192,6 +197,9 @@ main {
   background: rgba(230, 230, 230, 0.4); }
   .signUpSection h1 {
     margin-bottom: 3rem; }
+  .signUpSection .logFail {
+    margin-bottom: 1rem;
+    color: #bc4749; }
   .signUpSection .signUpForm {
     width: 80%;
     display: flex;
@@ -235,6 +243,9 @@ main {
   background: rgba(230, 230, 230, 0.4); }
   .loginSection h1 {
     margin-bottom: 3rem; }
+  .loginSection .logFail {
+    margin-bottom: 1rem;
+    color: #bc4749; }
   .loginSection .loginForm {
     width: 80%;
     display: flex;

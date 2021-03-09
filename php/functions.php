@@ -53,6 +53,8 @@ function userLogin(string $login, string $pw, $database) {
         } else {
             $_SESSION['wrongLogin'] = true;
         }
+    } else {
+        $_SESSION['wrongLogin'] = true;
     }
     
 
