@@ -1,5 +1,40 @@
-/* css global reset */
 @import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap");
+.clock {
+  width: 7rem;
+  height: 7rem;
+  border: 4px solid #bc4749;
+  border-radius: 50%;
+  margin: 11px auto;
+  position: relative;
+  padding: 0.6rem;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), inset 0 0 0 2px #efefef, inset 0 0 6px black, 0 0 10px rgba(0, 0, 0, 0.2); }
+
+.clock-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-3px);
+  /* account for the height of the clock hands */ }
+
+.hand {
+  width: 50%;
+  height: 2px;
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform-origin: 100%;
+  transform: rotate(90deg);
+  transition: ease-in-out; }
+
+.second-hand {
+  height: 1px; }
+
+.hour-hand {
+  height: 3px;
+  width: 40%;
+  left: 10%; }
+
+/* css global reset */
 *,
 *::after,
 *::before {
@@ -49,6 +84,19 @@ body {
     font-size: 3.2rem;
     color: #222222;
     text-decoration: none; }
+  .header__middle {
+    display: flex;
+    align-items: center; }
+  .header__meteo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.2rem; }
+    .header__meteo p {
+      margin-right: 1rem; }
+    .header__meteo img {
+      height: 4rem;
+      margin-right: 1rem; }
   .header__auth {
     display: flex;
     align-items: center; }

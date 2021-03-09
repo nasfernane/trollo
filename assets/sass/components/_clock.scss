@@ -1,0 +1,39 @@
+.clock {
+    width: 7rem;
+    height: 7rem;
+    border: 4px solid $color-red;
+    border-radius: 50%;
+    margin: 11px auto;
+    position: relative;
+    padding: 0.6rem;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), inset 0 0 0 2px #efefef, inset 0 0 6px black,
+        0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px); /* account for the height of the clock hands */
+}
+
+.hand {
+    width: 50%;
+    height: 2px;
+    background: black;
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: ease-in-out;
+}
+
+.second-hand {
+    height: 1px;
+}
+
+.hour-hand {
+    height: 3px;
+    width: 40%;
+    left: 10%;
+}

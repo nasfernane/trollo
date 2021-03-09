@@ -23,6 +23,27 @@
         }
     }
 
+    &__middle {
+        display: flex;
+        align-items: center;
+    }
+
+    &__meteo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 2.2rem;
+
+        p {
+            margin-right: 1rem;
+        }
+
+        img {
+            height: 4rem;
+            margin-right: 1rem;
+        }
+    }
+
     &__auth {
         display: flex;
         align-items: center;

@@ -14,6 +14,17 @@
             <img src="/assets/img/troll.png" alt="Troll Icon">
             <a href="/">Trollo</a>
         </div>
+        <div class="header__middle">
+            <?= isset($_SESSION['userid']) ? '<div class="header__meteo"></div>' : '' ?>
+            <div class="clock">
+                <div class="clock-face">
+                    <div class="hand hour-hand"></div>
+                    <div class="hand min-hand"></div>
+                    <div class="hand second-hand"></div>
+                </div>
+            </div>
+        </div>
+        
         <div class="header__auth">
             <?= displayLog() ?>
         </div>

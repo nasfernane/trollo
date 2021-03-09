@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/nasfernane/todo-list#readme",
     "dependencies": {
+        "axios": "^0.21.1",
         "node-sass": "^5.0.0"
     }
 }
