@@ -9,9 +9,9 @@ $_SESSION['wrongLogin'] = false;
 
 
 // Connexion à la BDD et récupération des exceptions
-$host = 'mysql:host=mysql-nasfernane.alwaysdata.net;dbname=nasfernane_trollodb';
+// $host = 'mysql:host=mysql-nasfernane.alwaysdata.net;dbname=nasfernane_trollodb';
 try {
-    $tododb = new PDO($host, '216502_nf', 'blabladodo1337');
+    $tododb = new PDO(getenv('DATABASE'), getenv('DATABASE_USER'), getenv('DATABASE_PASSWORD'));
     $tododb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
 // récupération des exceptions
