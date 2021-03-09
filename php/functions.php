@@ -2,7 +2,7 @@
 
 function displayLog() {
     // affiche les options de login/signup/logout en fonction de la session utilisateur
-    $isLogged = isset($_SESSION['userid']);
+    $isLogged = isset($_SESSION['userid']) ? true : false;
 
     return $isLogged 
     ? '<button class="header__auth--logout"><a href="?page=logout">Logout</a></button>'
@@ -45,7 +45,7 @@ function userLogin(string $login, string $pw, $database) {
         $userPassword = $user[0]['password'];
         $isCorrectPw = password_verify($pw, $userPassword);
 
-        // si les identifiants sont corrects, ajoute l'id de l'utilisateur à la session
+        // si les identifiants sont corrects, crée la session et ajoute son id avant de rediriger vers home
         if ($isCorrectPw) {
             $_SESSION['userid'] = $user[0]['idUser'];
             $_SESSION['wrongLogin'] = false;
@@ -62,9 +62,14 @@ function userLogin(string $login, string $pw, $database) {
 function displayTasks(string $table, object $database) {
     // définit le classement en fonction du type de liste
     $orderBy = $table === 'eventtask' ? 'date' :'dateCreation';
+    $idUser = $_SESSION['userid'];
 
     // récupère les tâches de l'utilisateur
-    $userTasks = $database->prepare("SELECT * FROM {$table} ORDER BY {$orderBy} ASC");
+    $userTasks = $database->prepare("
+        SELECT * 
+        FROM {$table} 
+        WHERE idUser = '{$idUser}'
+        ORDER BY {$orderBy} ASC");
     $requestStatus = $userTasks->execute();
 
     // si la requête est réussie, combine chaque tâche dans un ensemble HTML et le retourne
@@ -132,28 +137,31 @@ function addTask (object $database, string $table) {
     $task = htmlentities($_POST[$table], ENT_QUOTES);
     // récupère la date si présente (dans le cas de la liste events)
     $date = isset($_POST['eventdate']) ? $_POST['eventdate'] : '';
+    $idUser = $_SESSION['userid'];
 
     // construit la requête en fonction de la présence ou non d'une date d'évènement
     if (!$date) {
         $addTask = $database->prepare("
         INSERT INTO
-        $table (Nom)
-        VALUES (:task)");
+        $table (Nom, idUser)
+        VALUES (:task, :idUser)");
 
         // exécute la requête
         $addTask->execute(array(
         ':task' => $task,
+        ':idUser' => $idUser
         ));  
     } else {
         $addTask = $database->prepare("
             INSERT INTO
-            $table (Nom, Date)
-            VALUES (:task, :date)");
+            $table (Nom, idUser, Date)
+            VALUES (:task, :idUser, :date)");
 
         // exécute la requête
         $addTask->execute(array(
             ':task' => $task,
-            ':date' => $date
+            ':date' => $date,
+            ':idUser' => $idUser
         ));
     } 
 }

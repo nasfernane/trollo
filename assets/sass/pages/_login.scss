@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 60%;
-    border: 0.2rem solid black;
+    border: 0.2rem solid $color-font;
     padding: 2rem 2rem;
     border-radius: 0.8rem;
     background: rgba(230, 230, 230, 0.4);
@@ -21,10 +21,36 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 1rem;
 
             input {
-                width: 50%;
+                width: 60%;
+                padding: 1rem 2rem;
+                border: 0rem solid transparent;
+                border-bottom: 0.3rem solid transparent;
+                outline: none;
+
+                &:focus {
+                    outline: none;
+                    border: 0.3rem transparent;
+                    border-bottom: 0.3em solid $color-green;
+                    border-radius: 0.4rem;
+                }
+            }
+        }
+
+        button {
+            align-self: flex-end;
+            width: 60%;
+            padding: 0.5rem 1rem;
+            transition: all 0.1s ease-in;
+            outline: none;
+            border: 0px;
+
+            &:hover {
+                color: #fff;
+                background: $color-green;
             }
         }
     }

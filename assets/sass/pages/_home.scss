@@ -15,7 +15,7 @@ main {
 
     &__list {
         background: rgba(230, 230, 230, 0.4);
-        border: 0.2rem solid black;
+        border: 0.2rem solid $color-font;
         border-radius: 0.8rem;
         padding: 1rem 2rem;
         width: 30%;
@@ -27,7 +27,7 @@ main {
             justify-content: space-between;
             padding-bottom: 1rem;
             margin-bottom: 1rem;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid $color-font;
 
             h2 {
                 font-size: 3rem;

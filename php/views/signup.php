@@ -18,7 +18,7 @@
         </div>
 
         <div class="signUpForm__field">
-            <label for="signUpForm__pwConfirm">Confirmez votre mot de passe</label>
+            <label for="signUpForm__pwConfirm">Confirmation mot de passe</label>
             <input type="password" name="newpwconfirm" id="signUpForm__pwConfirm" autocomplete="off" placeholder="Ex: A priori votre teckel a toujours le même nom">
         </div>     
 

@@ -16,7 +16,8 @@ body {
   letter-spacing: 0.05rem; }
 
 * {
-  font-family: 'RocknRoll One', sans-serif; }
+  font-family: 'RocknRoll One', sans-serif;
+  color: #222222; }
 
 body {
   height: 100vh;
@@ -33,7 +34,7 @@ body {
 .header {
   height: 10vh;
   width: 100%;
-  margin-bottom: 5rem;
+  margin-bottom: 8rem;
   background: rgba(230, 230, 230, 0.4);
   display: flex;
   justify-content: space-between;
@@ -46,17 +47,19 @@ body {
   .header__trollogo a:active {
     font-weight: bold;
     font-size: 3.2rem;
-    color: black;
+    color: #222222;
     text-decoration: none; }
   .header__auth {
     display: flex;
     align-items: center; }
     .header__auth button {
+      font-size: 1.6rem;
+      font-weight: bold;
       outline: none;
       margin-left: 2rem;
       height: 3.2rem;
       border: 2px solid transparent;
-      padding: 1rem 2rem;
+      padding: 1rem 3rem;
       border-radius: 0.4rem;
       display: flex;
       align-items: center;
@@ -64,17 +67,19 @@ body {
       .header__auth button a:link,
       .header__auth button a:active,
       .header__auth button a:visited {
-        color: black;
+        color: #222222;
         text-decoration: none;
         transition: all 0.2s ease-in; }
+      .header__auth button:hover {
+        color: #fff; }
     .header__auth--signup:hover, .header__auth--login:hover {
-      border: 2px green solid; }
+      border: 2px #386641 solid; }
     .header__auth--signup:hover a, .header__auth--login:hover a {
-      color: green !important; }
+      color: #386641 !important; }
     .header__auth--logout:hover {
-      border: 2px red solid; }
+      border: 2px #bc4749 solid; }
     .header__auth--logout:hover a {
-      color: red !important; }
+      color: #bc4749 !important; }
 
 main {
   width: 80%;
@@ -91,7 +96,7 @@ main {
   height: auto; }
   .todoContainer__list {
     background: rgba(230, 230, 230, 0.4);
-    border: 0.2rem solid black;
+    border: 0.2rem solid #222222;
     border-radius: 0.8rem;
     padding: 1rem 2rem;
     width: 30%;
@@ -102,7 +107,7 @@ main {
       justify-content: space-between;
       padding-bottom: 1rem;
       margin-bottom: 1rem;
-      border-bottom: 1px solid black; }
+      border-bottom: 1px solid #222222; }
       .todoContainer__list__header h2 {
         font-size: 3rem; }
     .todoContainer__list__form {
@@ -181,7 +186,7 @@ main {
   flex-direction: column;
   align-items: center;
   width: 60%;
-  border: 0.2rem solid black;
+  border: 0.2rem solid #222222;
   padding: 2rem 2rem;
   border-radius: 0.8rem;
   background: rgba(230, 230, 230, 0.4); }
@@ -195,16 +200,36 @@ main {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 1rem; }
       .signUpSection .signUpForm__field input {
-        width: 50%; }
+        width: 60%;
+        padding: 1rem 2rem;
+        border: 0rem solid transparent;
+        border-bottom: 0.3rem solid transparent;
+        outline: none; }
+        .signUpSection .signUpForm__field input:focus {
+          outline: none;
+          border: 0.3rem transparent;
+          border-bottom: 0.3em solid #386641;
+          border-radius: 0.4rem; }
+    .signUpSection .signUpForm button {
+      align-self: flex-end;
+      width: 60%;
+      padding: 0.5rem 1rem;
+      transition: all 0.1s ease-in;
+      outline: none;
+      border: 0px; }
+      .signUpSection .signUpForm button:hover {
+        color: #fff;
+        background: #386641; }
 
 .loginSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 60%;
-  border: 0.2rem solid black;
+  border: 0.2rem solid #222222;
   padding: 2rem 2rem;
   border-radius: 0.8rem;
   background: rgba(230, 230, 230, 0.4); }
@@ -218,6 +243,26 @@ main {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 1rem; }
       .loginSection .loginForm__field input {
-        width: 50%; }
+        width: 60%;
+        padding: 1rem 2rem;
+        border: 0rem solid transparent;
+        border-bottom: 0.3rem solid transparent;
+        outline: none; }
+        .loginSection .loginForm__field input:focus {
+          outline: none;
+          border: 0.3rem transparent;
+          border-bottom: 0.3em solid #386641;
+          border-radius: 0.4rem; }
+    .loginSection .loginForm button {
+      align-self: flex-end;
+      width: 60%;
+      padding: 0.5rem 1rem;
+      transition: all 0.1s ease-in;
+      outline: none;
+      border: 0px; }
+      .loginSection .loginForm button:hover {
+        color: #fff;
+        background: #386641; }
