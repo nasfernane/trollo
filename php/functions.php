@@ -172,11 +172,12 @@ function addTask (object $database, string $table) {
 function removeTask (object $database, string $table) {
     // récupère le nom de la tâche à supprimer
     $task = htmlentities($_POST["{$table}_delete"], ENT_QUOTES);
+    $idUser = $_SESSION['userid'];
 
     // première requête pour récupérer son ID dans la BDD
     $deletingId = $database->query("
     SELECT id{$table} FROM $table
-    WHERE nom='{$task}'
+    WHERE nom='{$task}' && idUser='{$idUser}'
     ");
 
     // fetch la première requête puis déstructure le tableau retourné
@@ -195,11 +196,12 @@ function removeTask (object $database, string $table) {
 function defineUrgentTask (object $database, string $table) {
     // récupération du nom de la tâche
     $task = htmlentities($_POST["{$table}_clock"], ENT_QUOTES);
+    $idUser = $_SESSION['userid'];
 
     // première requête pour récupérer l'id de la tâche à supprimer
     $taskId = $database->query("
     SELECT id{$table} FROM $table
-    WHERE nom='{$task}'
+    WHERE nom='{$task}' && idUser='{$idUser}'
     ");
 
     // fetch la deuxième requête puis déstructure le tableau retourné
